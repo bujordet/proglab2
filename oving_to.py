@@ -14,20 +14,11 @@ class Spiller(object):
         self.saks = 0
         self.papir = 0
 
-    def velg_aksjon(self, aksjon):
-        if (aksjon > 0):
-            aksjon -= 1
-        else:
-            aksjon = 2
+    def velg_aksjon(self):
         return aksjon
 
-    def motta_resultat(self, spiller1, spiller2):
-        if (spiller1 == spiller2):
-            poeng = 0
-        elif (spiller1 == 0 and spiller2 == 1 or spiller1 == 1 and spiller2 == 2 or spiller1 == 2 and spiller2 == 0):
-            poeng = 1
-        else:
-            poeng = 2
+    def motta_resultat(self, spiller2):
+
         return poeng
 
     def oppgi_navn(self):
@@ -87,3 +78,18 @@ class Historiker(Spiller):
 
     def motta_resultat(self, motstanderResultat):
         super.
+
+class EnkeltSpill(Spiller):
+    """docstring for """
+    def __init__(self, spill):
+        super(, self).__init__("EnkeltSpill")
+        self.spill = spill
+
+    def finn_vinner(self, spiller1, spiller2):
+        if (spiller1 == spiller2):
+            poeng = 0
+        elif (spiller1 == 0 and spiller2 == 1 or spiller1 == 1 and spiller2 == 2 or spiller1 == 2 and spiller2 == 0):
+            poeng = 1
+        else:
+            poeng = 2
+        return vinner
