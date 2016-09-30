@@ -7,15 +7,16 @@ class main():
     test3 = Cipher.Affine((3,2))
     test4 = Cipher.Unbrakable("RUKE")
 
-    encode = test.encode("HAGE")
+
     decode = test.decode(encode)
-    encode2 = test2.encode("KUKE")
     decode2 = test2.decode(encode2)
-    encode3 = test3.encode("RUKE")
     decode3 = test3.decode(encode3)
-    encode4 = test4.encode("PIZZATRYNE")
     decode4 = test4.decode(encode4)
 
+    encode = test.encode("HAGE")
+    encode2 = test2.encode("KUKE")
+    encode3 = test3.encode("RUKE")
+    encode4 = test4.encode("PIZZATRYNE")
 
     print(encode, decode)
     print(encode2,decode2)
