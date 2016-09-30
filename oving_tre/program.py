@@ -1,6 +1,9 @@
+__author__ = "Morten Bujordet"
 import Cipher
 import crypto_utils
+import Person
 import random
+
 
 def generate_koding_keys():
     p = crypto_utils.generate_random_prime(8)
@@ -21,7 +24,7 @@ class main():
     test4 = Cipher.Unbrakable("RUKE")
     test5 = Cipher.RSA(generate_koding_keys())
 
-    encode = test.encode("HAGE")
+    encode = test.encode("zig")
     decode = test.decode(encode)
     encode2 = test2.encode("KUKE")
     decode2 = test2.decode(encode2)
@@ -31,6 +34,9 @@ class main():
     decode4 = test4.decode(encode4)
     encode5 = test5.encode("HAKE")
     decode5 = test5.decode(encode5)
+
+
+    hacker = Person.Hacker.operate_cipher(encode)
 
 
     print(encode, decode)
@@ -43,7 +49,7 @@ class main():
     print(test2.verify("BADE"))
     print(test3.verify("RUKE"))
     print(test4.verify("PIZZATRYNE"))
-    #print(test5.verify("HAKE"))
+    print(test5.verify("HAKE"))
 
 
     print(generate_koding_keys())

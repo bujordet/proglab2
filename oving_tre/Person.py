@@ -1,6 +1,7 @@
 __author__ = "Morten Bujordet"
 
 import Cipher
+from sys import stdin
 
 class Person(object):
     """docstring for """
@@ -28,3 +29,23 @@ class Reciver(Person):
     def operate_cipher(self):
         #Behandler en kodet tekst og decoder denne.
         return decoded_text
+
+class Hacker(Person):
+    def __init__(self, kodet_tekst):
+        self.kodet_tekst = kodet_tekst
+
+    def operate_cipher(self):
+        svar = False
+
+        for n in range(Cipher.tegn):
+            dekodet_tekst = Cipher.Caesar(n).decode(self.kodet_tekst)
+            svar = check_wordlist(dekodet_tekst)
+            if (svar == True):
+                return dekodet_tekst
+
+    def check_wordlist(self, dekodet_tekst):
+        for line in stdin:
+            word = line.split()
+            if (word == dekodet_tekst):
+                return True
+        return False

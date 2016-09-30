@@ -1,8 +1,8 @@
+__author__ = "Morten Bujordet"
 import Person
 import crypto_utils
 
-__author__ = "Morten Bujordet"
-
+tegn = 95
 class Cipher(object):
     """docstring for """
     def __init__(self):
@@ -14,7 +14,7 @@ class Cipher(object):
          'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',\
          'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~']
 
-        self.tegn = 95
+
 
     def encode(self, klarTekst):
 
@@ -45,8 +45,8 @@ class Caesar(Cipher):
         for symbol in klarTekst:
             orginal = self.alfabetet.index(symbol)
             tall = orginal + self.key
-            if (tall >= self.tegn):
-                tall = tall%self.tegn
+            if (tall >= tegn):
+                tall = tall%tegn
             kodet_tekst += self.alfabetet[tall]
         return kodet_tekst
 
@@ -56,7 +56,7 @@ class Caesar(Cipher):
             orginal = self.alfabetet.index(symbol)
             tall = orginal - self.key
             if (tall < 0):
-                tall = (tall + self.tegn)%self.tegn
+                tall = (tall + tegn)%tegn
             dekodet_tekst += self.alfabetet[tall]
         return dekodet_tekst
 
@@ -76,26 +76,26 @@ class Multiplicative(Cipher):
         for symbol in klarTekst:
             orginal = self.alfabetet.index(symbol)
             tall = orginal * self.key
-            if (tall >= self.tegn):
-                tall = tall%self.tegn
+            if (tall >= tegn):
+                tall = tall%tegn
             kodet_tekst += self.alfabetet[tall]
         return kodet_tekst
 
     def decode(self, kryptTekst):
-        #print(self.tegn)
+        #print(tegn)
         #print(self.key)
         klar_tekst = ""
         for symbol in kryptTekst:
             orginal = self.alfabetet.index(symbol)
-            m = crypto_utils.modular_inverse(self.key, self.tegn)
+            m = crypto_utils.modular_inverse(self.key, tegn)
             #print(m)
-            ny_key = (orginal*m)%self.tegn
+            ny_key = (orginal*m)%tegn
             klar_tekst += self.alfabetet[ny_key]
         return klar_tekst
 
     def check_key(self):
-        m = crypto_utils.modular_inverse(self.key, self.tegn)
-        return (self.key*m == 1%self.tegn)
+        m = crypto_utils.modular_inverse(self.key, tegn)
+        return (self.key*m == 1%tegn)
 
 class Affine(Cipher):
     def __init__(self, key):
@@ -110,7 +110,7 @@ class Affine(Cipher):
         return resultat
 
     def decode(self, kodet_tekst):
-        steg_en = Caesar(self.tegn - self.keytwo).encode(kodet_tekst)
+        steg_en = Caesar(tegn - self.keytwo).encode(kodet_tekst)
         dekodet_tekst = Multiplicative(self.keyone).decode(steg_en)
         return dekodet_tekst
 
@@ -126,8 +126,8 @@ class Unbrakable(Cipher):
             verdi_tekst = self.alfabetet.index(letter)
             verdi_kodeord = self.alfabetet.index(self.keyword[count])
             totalverdi = verdi_kodeord + verdi_tekst
-            if (totalverdi >= self.tegn):
-                totalverdi = totalverdi%self.tegn
+            if (totalverdi >= tegn):
+                totalverdi = totalverdi%tegn
             kodet_tekst += self.alfabetet[totalverdi]
             if (count == len(self.keyword)-1):
                 count = 0
@@ -139,14 +139,14 @@ class Unbrakable(Cipher):
         lureord = []
         for letter in self.keyword:
             verdi_kodeord = self.alfabetet.index(letter)
-            verdi_lureord = (self.tegn - verdi_kodeord)%self.tegn
+            verdi_lureord = (tegn - verdi_kodeord)%tegn
             lureord.append(verdi_lureord)
         x = 0
         for character in kodet_tekst:
             verdi_tekst = self.alfabetet.index(character)
             tilbake_verdi = verdi_tekst + lureord[x]
-            if (tilbake_verdi >= self.tegn):
-                tilbake_verdi = tilbake_verdi%self.tegn
+            if (tilbake_verdi >= tegn):
+                tilbake_verdi = tilbake_verdi%tegn
             dekodet_tekst += self.alfabetet[tilbake_verdi]
             if (x == len(lureord)-1):
                 x = 0
