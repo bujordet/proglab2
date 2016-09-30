@@ -24,14 +24,13 @@ class main():
     test4 = Cipher.Unbrakable("RUKE")
     test5 = Cipher.RSA(generate_koding_keys())
 
-<<<<<<< HEAD
-
-=======
     encode = test.encode("zig")
->>>>>>> refs/remotes/origin/master
     decode = test.decode(encode)
+    encode2 = test2.encode("KUKE")
     decode2 = test2.decode(encode2)
+    encode3 = test3.encode("RUKE")
     decode3 = test3.decode(encode3)
+    encode4 = test4.encode("PIZZATRYNE")
     decode4 = test4.decode(encode4)
     encode5 = test5.encode("HAKE")
     decode5 = test5.decode(encode5)
@@ -39,10 +38,6 @@ class main():
 
     hacker = Person.Hacker.operate_cipher(encode)
 
-    encode = test.encode("HAGE")
-    encode2 = test2.encode("KUKE")
-    encode3 = test3.encode("RUKE")
-    encode4 = test4.encode("PIZZATRYNE")
 
     print(encode, decode)
     print(encode2,decode2)
