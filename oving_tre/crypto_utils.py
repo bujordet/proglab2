@@ -37,8 +37,8 @@ def modular_inverse(a, m):
 
     gcd_value, x, y = extended_gcd(a, m)
     if gcd_value != 1:
-        print('No inverse. gcd (%d, %d) is %d. Decoding is not unique. Choose another key than %d'
-              % (a, m, math.gcd(a, m), a))
+        return -1
+
     return x % m
 
 
@@ -253,4 +253,3 @@ def generate_random_prime(bits, prime_test=rabin_miller_is_prime):
                 p = get_random_t()
             else:
                 p += 2  # Add 2 since we are only interested in odd numbers
-

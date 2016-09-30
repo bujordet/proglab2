@@ -152,3 +152,29 @@ class Unbrakable(Cipher):
                 x = 0
 
         return dekodet_tekst
+
+class RSA(Cipher):
+    def __init__(self, tuppelen):
+        super().__init__()
+        self.n = tuppelen[0]
+        self.e = tuppelen[1]
+        self.d = tuppelen[2]
+
+
+
+    def encode(self, melding):
+        kodet_int = []
+        for letter in melding:
+            block = crypto_utils.blocks_from_text(letter, 1)[0]
+            if (0 < block < self.n):
+                crypted_block = pow(block, self.e, self.n)
+                kodet_int.append(crypted_block)
+        print("The encode text is given by:", crypto_utils.text_from_blocks(kodet_int, len(kodet_int)))
+        return kodet_int
+
+    def decode(self, kodet_liste):
+        dekodet_liste = []
+        for c in kodet_liste:
+            dekrypted_block = pow(c, self.d, self.n)
+            dekodet_liste.append(dekrypted_block)
+        return crypto_utils.text_from_blocks(dekodet_liste, len(dekodet_liste))
