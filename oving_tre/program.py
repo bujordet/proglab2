@@ -38,17 +38,18 @@ class main():
     hacker = Person.Hacker(encode).operate_cipher()
 
 
-    print(encode, decode)
-    print(encode2,decode2)
-    print(encode3 , decode3)
-    print(encode4, decode4)
-    print(encode5, decode5)
+    #print(encode, decode)
+    #print(encode2,decode2)
+    #print(encode3 , decode3)
+    #print(encode4, decode4)
+    #print(encode5, decode5)
+    print(hacker)
 
-    print(test.verify("HAGE"))
-    print(test2.verify("BADE"))
-    print(test3.verify("RUKE"))
-    print(test4.verify("PIZZATRYNE"))
-    print(test5.verify("HAKE"))
+    #print(test.verify("HAGE"))
+    #print(test2.verify("BADE"))
+    #print(test3.verify("RUKE"))
+    #print(test4.verify("PIZZATRYNE"))
+    #print(test5.verify("HAKE"))
 
 
-    print(generate_koding_keys())
+    #print(generate_koding_keys())

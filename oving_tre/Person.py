@@ -1,6 +1,8 @@
 __author__ = "Morten Bujordet"
 
 import Cipher
+import crypto_utils
+import ordliste
 from sys import stdin
 
 class Person(object):
@@ -33,19 +35,18 @@ class Reciver(Person):
 class Hacker(Person):
     def __init__(self, kodet_tekst):
         self.kodet_tekst = kodet_tekst
+        self.ordliste = ordliste.WordList()
 
     def operate_cipher(self):
         svar = False
 
         for n in range(Cipher.tegn):
-            dekodet_tekst = Cipher.Caesar(n).decode(self.kodet_tekst)
-            svar = self.check_wordlist(dekodet_tekst)
-            if (svar == True):
-                return dekodet_tekst
-
-    def check_wordlist(self, dekodet_tekst):
-        for line in stdin:
-            word = line.split()
-            if (word == dekodet_tekst):
+            """dekodet_tekst = Cipher.Caesar(n).decode(self.kodet_tekst)
+            print(dekodet_tekst)"""
+            oppsett = Cipher.Caesar(n)
+            decode = oppsett.decode(self.kodet_tekst)
+            #print(decode)
+            check = self.ordliste.__contains__(decode)
+            if (check):
                 return True
         return False
