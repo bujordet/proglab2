@@ -254,13 +254,3 @@ def generate_random_prime(bits, prime_test=rabin_miller_is_prime):
                 p = get_random_t()
             else:
                 p += 2  # Add 2 since we are only interested in odd numbers
-
-
-def check_wordlist(dekodet_tekst):
-    for line in stdin:
-        word = line.split()[0]
-        #print(word)
-        print(word, dekodet_tekst)
-        if (word == dekodet_tekst):
-            return True
-    return False
