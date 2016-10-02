@@ -129,8 +129,10 @@ class Unbrakable(Cipher):
             if (totalverdi >= tegn):
                 totalverdi = totalverdi%tegn
             kodet_tekst += self.alfabetet[totalverdi]
+            count += 1
             if (count == len(self.keyword)-1):
                 count = 0
+
 
         return kodet_tekst
 
@@ -148,6 +150,7 @@ class Unbrakable(Cipher):
             if (tilbake_verdi >= tegn):
                 tilbake_verdi = tilbake_verdi%tegn
             dekodet_tekst += self.alfabetet[tilbake_verdi]
+            x += 1
             if (x == len(lureord)-1):
                 x = 0
 
@@ -169,7 +172,7 @@ class RSA(Cipher):
             if (0 < block < self.n):
                 crypted_block = pow(block, self.e, self.n)
                 kodet_int.append(crypted_block)
-        print("The encode text is given by:", crypto_utils.text_from_blocks(kodet_int, len(kodet_int)))
+        #print("The encode text is given by:", crypto_utils.text_from_blocks(kodet_int, len(kodet_int)))
         return kodet_int
 
     def decode(self, kodet_liste):

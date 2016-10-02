@@ -1,4 +1,4 @@
-__author__ = "Ole Håkon"
+__author__ = "Ole Håkon Ødegård"
 from sys import stdin
 import traceback
 
