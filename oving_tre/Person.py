@@ -39,7 +39,7 @@ class Hacker(Person):
 
         for n in range(Cipher.tegn):
             dekodet_tekst = Cipher.Caesar(n).decode(self.kodet_tekst)
-            svar = check_wordlist(dekodet_tekst)
+            svar = self.check_wordlist(dekodet_tekst)
             if (svar == True):
                 return dekodet_tekst
 

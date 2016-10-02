@@ -35,8 +35,7 @@ class main():
     encode5 = test5.encode("HAKE")
     decode5 = test5.decode(encode5)
 
-
-    hacker = Person.Hacker.operate_cipher(encode)
+    hacker = Person.Hacker(encode).operate_cipher()
 
 
     print(encode, decode)
