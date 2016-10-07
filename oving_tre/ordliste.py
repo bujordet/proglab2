@@ -26,7 +26,7 @@ class WordList:
 
     def __contains__(self, text):
         def check_word(word):
-            node = self.top_node
+            node = self.to p_node
             for l in word:
                 if node.barn.get(l) is None:
                     return False

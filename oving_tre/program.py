@@ -97,7 +97,7 @@ class main():
     print(test2.verify("BADE"))
     print(test3.verify("RUKE"))
     print(test4.verify("zoroastrianism"))
-    print(test5.verify("HAKE"))
+    print(test5.verify("HAKE"))"""
 
 
-    print(generate_koding_keys())"""
+    #print(generate_koding_keys())

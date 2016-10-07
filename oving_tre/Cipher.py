@@ -146,7 +146,7 @@ class Unbrakable(Cipher):
         x = 0
         for character in kodet_tekst:
             verdi_tekst = self.alfabetet.index(character)
-            tilbake_verdi = verdi_tekst + lureord[x]
+            tilbake_verdi = verdi_tekst + lureord[x%len(lureord)]
             if (tilbake_verdi >= tegn):
                 tilbake_verdi = tilbake_verdi%tegn
             dekodet_tekst += self.alfabetet[tilbake_verdi]
