@@ -23,7 +23,7 @@ def generate_koding_keys():
 class main():
     n = 0
     kodet_tekst = ""
-    #dic = {"Caesar": Cipher.Caesar(n), "Multiplicative": Cipher.Multiplicative(n), "Affine": Cipher.Affine(n), "Unbrakable": Cipher.Unbrakable(n)}
+
     all_cipher = ["Caesar", "Multiplicative", "Affine", "Unbrakable"]
     tekst = input("Write text to be decoded: ")
     print("Choose one of the ciphers below")
@@ -34,16 +34,10 @@ class main():
     if (cipher_to_use == "1"):
         n = int(input("Write your key (n): "))
         caesar = Cipher.Caesar(n)
-        #tekst = tekst.split()
-        #for word in tekst:
-        #    print(word)
         kodet_tekst = caesar.encode(tekst)
 
     elif (cipher_to_use == "2"):
         n = int(input("Write your key (n): "))
-        #tekst = tekst.split()
-        #for word in tekst:
-        #    print(word)
         kodet_tekst += Cipher.Multiplicative(n).encode(tekst)
 
     elif (cipher_to_use == "3"):

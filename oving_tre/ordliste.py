@@ -37,7 +37,6 @@ class WordList:
         for w in words:
             if not check_word(w.strip()):
                 return False
-
         return True
 
     def get_word_list(self) -> list:
