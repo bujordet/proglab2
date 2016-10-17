@@ -1,4 +1,4 @@
-__author__ = 'Vemund'
+__author__ = "Morten Bujordet"
 # -*- coding=utf-8 -*-
 from os import listdir
 from os.path import isfile, join
@@ -9,10 +9,10 @@ class FileHandler:
 
     @staticmethod
     def read_file(filepath):
-        file = open(filepath, 'r', encoding="utf8")
-        string = ''
+        file = open(filepath, "r", encoding="utf8")
+        string = ""
         for line in file.readlines():
-            string += line.strip() + ' '
+            string += line.strip() + " "
         file.close()
         return string.lower()
 
@@ -22,7 +22,7 @@ class FileHandler:
 
     @staticmethod
     def make_list_from_file(filepath):
-        return ' '.join(open(filepath, 'r', encoding='utf8').readlines()).split()
+        return " ".join(open(filepath, "r", encoding="utf8").readlines()).split()
 
 
 class Word:
@@ -39,8 +39,8 @@ class Word:
         return self.string
 
     def __repr__(self):
-        return self.string.rjust(15) + str('  Appeared: ' + str(self.appeared)).ljust(20) + str('  Popularity:' +
-                str(self.popularity)).ljust(30) + str('  InfoValue: ' + str(self.information_value)).ljust(15) + '\n'
+        return self.string.rjust(15) + str("  Appeared: " + str(self.appeared)).ljust(20) + str("  Popularity:" +
+                str(self.popularity)).ljust(30) + str("  InfoValue: " + str(self.information_value)).ljust(15) + "\n"
 
     def __eq__(self, other):
         if self.string == other.string:
@@ -48,7 +48,7 @@ class Word:
         return False
 
     def __add__(self, other):
-        self.string += ' ' + other.string
+        self.string += " " + other.string
         return self
 
     def __lt__(self, other):
@@ -99,10 +99,10 @@ class Dictionary:
 
     @staticmethod
     def remove_nonalphanumeric(string):
-        result = ''
-        string = string.replace('<br />', ' ')
+        result = ""
+        string = string.replace("<br />", " ")
         for char in string:
-            if char.isalnum() or char == ' ':
+            if char.isalnum() or char == " ":
                 result += char
         return result
 
@@ -132,7 +132,7 @@ class Dictionary:
                 word_set = set()
                 index = 0
                 while index <= len(word_list) - n:
-                    word = ' '.join(word_list[index:index + n])
+                    word = " ".join(word_list[index:index + n])
                     if word not in word_set:
                         word_set.add(word)
                         if word in self.words.keys():
@@ -153,8 +153,8 @@ class Dictionary:
 class DataSet:
 
     def __init__(self, positive_filepaths, negative_filepaths):
-        self.positive_words = Dictionary('positive')
-        self.negative_words = Dictionary('negative')
+        self.positive_words = Dictionary("positive")
+        self.negative_words = Dictionary("negative")
         self.positive_filepaths = positive_filepaths
         self.negative_filepaths = negative_filepaths
         self.number_of_reviews = len(positive_filepaths) + len(negative_filepaths)
@@ -190,7 +190,7 @@ class DataSet:
     def evalute_review(self, filepath):
 
         strings = Dictionary.remove_nonalphanumeric(FileHandler.read_file(filepath)).split()
-        strings = self.remove(strings, FileHandler.make_list_from_file('./data/stop_words.txt'))
+        strings = self.remove(strings, FileHandler.make_list_from_file("./data/stop_words.txt"))
         strings = set(strings)
 
         positive_value = 0
@@ -204,11 +204,11 @@ class DataSet:
                 negative_value += m.log2(self.negative_words.get_popularity(string))
 
         if positive_value < negative_value:
-            #print('File:', filepath, '|Positive:', positive_value, '|Negative:', negative_value, '|Conclusion: NEGATIVE')
-            return 'negative'
+            #print("File:", filepath, "|Positive:", positive_value, "|Negative:", negative_value, "|Conclusion: NEGATIVE")
+            return "negative"
         else:
-            #print('File:', filepath, '|Positive:', positive_value, '|Negative:', negative_value, '|Conclusion: POSITIVE')
-            return 'positive'
+            #print("File:", filepath, "|Positive:", positive_value, "|Negative:", negative_value, "|Conclusion: POSITIVE")
+            return "positive"
 
     def make_vocabulary(self):
         self.vocabulary = set([x for x in self.positive_words.keys() if x in self.negative_words.keys()])
