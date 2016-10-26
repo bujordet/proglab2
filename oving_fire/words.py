@@ -1,38 +1,49 @@
 __author__  = "Morten Bujordet"
 from os import listdir
 from os.path import isfile, join
+import codecs
 
 
+class Filereader:
 
-class filereader:
 
-    def file_reader(filepath):
-        file = open(filename, encoding = ’utf-8’)
+    def file_reader(self, filepath):
+        file = codecs.open(filepath, 'r', encoding = "utf-8")
         string = ""
         for line in file.readlines():
             string += line.strip() + " "
         file.close()
         return string.lower()
 
-    def 
+
+    def create_string(self, filepath):
+        return " ".join(open(filepath, encoding = "utf-8").readlines()).split()
 
 
-
-
-
-class Words(object):
-    def __init__(self, arg):
-        super().__init__()
-        self.arg = arg
-
-    def readFile():
+    def create_filepath_list(self, directory):
         liste = []
-        for line in stdin:
-            line.strip([' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*',\
-                        '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?',\
-                        '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'])
-            if line not in liste:
-                liste.append(line)
+        for f in listdir(directory):
+            if (isfile(join(directory, f))):
+                liste.append(directory + f)
         return liste
 
-    def
+
+class Lister:
+
+    def __init__(self, name):
+        self.name = name
+        self.words = dict()
+
+
+
+    def remove_nonealpha(string):
+        clean = ""
+        for char in string:
+            if (char.isalnum() or char == ' '):
+                clean += char
+        return clean
+
+    def make_wordlist_from_path(self, filepaths):
+        for filepath in filepaths:
+            word_list = self.remove_nonealpha(Filereader.file_reader(filepath)).split()
+        return word_list
